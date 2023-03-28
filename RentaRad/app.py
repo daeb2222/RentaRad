@@ -30,7 +30,7 @@ def login():
     if request.method == 'POST':
         return redirect(url_for('home'))
     else:
-        return render_template('login.html')
+        return render_template('home.html')
 
 @app.route('/rentar', methods=['POST'])
 def rentar():
@@ -39,6 +39,7 @@ def rentar():
     tiempo = request.form['tiempo']
     # procesa la renta de la bicicleta y muestra una página de confirmación
     return render_template('confirmacion.html', nombre=nombre, fecha=fecha, tiempo=tiempo)
+
 
 @app.route('/home')
 @login_required

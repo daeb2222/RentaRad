@@ -1,22 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmación de renta de bicicletas</title>
-</head>
-<body>
+    <style>
+      /* Estilos para el título */
+      h1 {
+        font-size: 2em;
+        font-weight: bold;
+        margin: 1em 0;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      
+      /* Estilos para la tabla */
+      table {
+        border-collapse: collapse;
+        margin: 2em auto;
+        width: 80%;
+      }
+
+      td, th {
+        border: 1px solid black;
+        padding: 0.5em;
+        text-align: left;
+      }
+
+      th {
+        background-color: #ddd;
+        font-weight: bold;
+      }
+
+      /* Estilos para el precio */
+      #precio {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: right;
+      }
+
+      #precio::before {
+        content: "Precio: $";
+      }
+
+    </style>
+  </head>
+  <body>
     <h1>¡Gracias por rentar una bicicleta con nosotros!</h1>
 
     <p>Estos son los detalles de tu renta:</p>
 
-    <ul>
-        <li><strong>Nombre:</strong> {{ nombre }}</li>
-        <li><strong>Fecha de renta:</strong> {{ fecha }}</li>
-        <li><strong>Tiempo de renta:</strong> {{ tiempo }} horas</li>
-        <li><strong>Precio:</strong> ${{ precio }}</li>
-    </ul>
+    <table>
+      <tr>
+        <th>Nombre:</th>
+        <td>{{ nombre }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de renta:</th>
+        <td>{{ fecha }}</td>
+      </tr>
+      <tr>
+        <th>Tiempo de renta:</th>
+        <td>{{ tiempo }} horas</td>
+      </tr>
+      <tr>
+        <th>Precio:</th>
+        <td id="precio"></td>
+      </tr>
+    </table>
 
     <p>¡Disfruta tu paseo en bicicleta!</p>
-</body>
+
+    <script>
+      function calcularPrecio() {
+        var tiempo = {{ tiempo }};
+        var precio = tiempo * 10; // $10 por hora
+        document.getElementById('precio').textContent = precio.toFixed(2);
+        return precio;
+      }
+
+      window.onload = calcularPrecio;
+    </script>
+  </body>
 </html>
+
