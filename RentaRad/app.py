@@ -17,9 +17,16 @@ class User(UserMixin):
     def __init__(self, id):
         self.id = id
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User(user_id)
+
+@app.route('/perfil')
+def perfil():
+    # Aquí debes incluir el código para obtener y mostrar las bicicletas en renta del usuario
+    return render_template('perfil.html')
+
 
 @app.route('/')
 def index():
@@ -28,9 +35,9 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        return redirect(url_for('home'))
+        return redirect(url_for('rent'))
     else:
-        return render_template('home.html')
+        return render_template('rent.html')
 
 @app.route('/rentar', methods=['POST'])
 def rentar():
@@ -41,11 +48,11 @@ def rentar():
     return render_template('confirmacion.html', nombre=nombre, fecha=fecha, tiempo=tiempo)
 
 
-@app.route('/home')
+@app.route('/rent')
 @login_required
-def home():
+def rent():
     print(bicicleta)
-    return render_template('home.html',bicicletas=bicicleta)
+    return render_template('rent.html',bicicletas=bicicleta)
 
 @app.route('/logout')
 @login_required

@@ -1,86 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmación de renta de bicicletas</title>
     <style>
-      /* Estilos para el título */
-      h1 {
-        font-size: 2em;
-        font-weight: bold;
-        margin: 1em 0;
-        text-align: center;
-        text-transform: uppercase;
-      }
-      
-      /* Estilos para la tabla */
-      table {
-        border-collapse: collapse;
-        margin: 2em auto;
-        width: 80%;
-      }
-
-      td, th {
-        border: 1px solid black;
-        padding: 0.5em;
-        text-align: left;
-      }
-
-      th {
-        background-color: #ddd;
-        font-weight: bold;
-      }
-
-      /* Estilos para el precio */
-      #precio {
-        font-size: 1.5em;
-        font-weight: bold;
-        text-align: right;
-      }
-
-      #precio::before {
-        content: "Precio: $";
-      }
-
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 2rem;
+        }
+        p {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        table {
+            margin: 0 auto;
+            width: 80%;
+            border-collapse: collapse;
+            font-size: 1.2rem;
+        }
+        td {
+            padding: 0.5rem;
+            text-align: left;
+        }
+        td:nth-child(1) {
+            font-weight: bold;
+        }
+        td:nth-child(2) {
+            text-align: right;
+        }
+        #precio {
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+        #mensaje {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .button {
+            background-color: #006699;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            }
+        
+            .button:hover {
+            background-color: #005577;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+    <button class="button" onclick="window.location.href='/perfil'">Ver perfil</button>
     <h1>¡Gracias por rentar una bicicleta con nosotros!</h1>
 
     <p>Estos son los detalles de tu renta:</p>
 
     <table>
-      <tr>
-        <th>Nombre:</th>
-        <td>{{ nombre }}</td>
-      </tr>
-      <tr>
-        <th>Fecha de renta:</th>
-        <td>{{ fecha }}</td>
-      </tr>
-      <tr>
-        <th>Tiempo de renta:</th>
-        <td>{{ tiempo }} horas</td>
-      </tr>
-      <tr>
-        <th>Precio:</th>
-        <td id="precio"></td>
-      </tr>
+        <tr>
+          <td><strong>Nombre:</strong></td>
+          <td>{{ nombre }}</td>
+        </tr>
+        <tr>
+          <td><strong>Fecha de renta:</strong></td>
+          <td>{{ fecha }}</td>
+        </tr>
+        <tr>
+          <td><strong>Tiempo de renta:</strong></td>
+          <td>{{ tiempo }} horas</td>
+        </tr>
+        <tr>
+          <td><strong>Precio:</strong></td>
+          <td id="precio"></td>
+        </tr>
     </table>
 
-    <p>¡Disfruta tu paseo en bicicleta!</p>
+    <p id="mensaje">¡Disfruta tu paseo en bicicleta!</p>
 
     <script>
-      function calcularPrecio() {
-        var tiempo = {{ tiempo }};
-        var precio = tiempo * 10; // $10 por hora
-        document.getElementById('precio').textContent = precio.toFixed(2);
-        return precio;
-      }
-
-      window.onload = calcularPrecio;
+        function calcularPrecio() {
+            var tiempo = {{ tiempo }}; // la cantidad de horas se pasa como variable
+            var precio = tiempo * 10; // el precio es de $10 por hora
+            document.getElementById('precio').textContent = "$" + precio;
+            return precio;
+        }
+        window.onload = calcularPrecio();
     </script>
-  </body>
+</body>
 </html>
-

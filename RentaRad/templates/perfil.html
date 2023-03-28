@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis bicicletas en renta</title>
+    <style>
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 2rem;
+        }
+        table {
+            margin: 0 auto;
+            width: 80%;
+            border-collapse: collapse;
+            font-size: 1.2rem;
+        }
+        td {
+            padding: 0.5rem;
+            text-align: left;
+        }
+        td:nth-child(1) {
+            font-weight: bold;
+        }
+        td:nth-child(2) {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Mis bicicletas en renta</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Bicicleta</th>
+                <th>Fecha de renta</th>
+                <th>Tiempo de renta</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for renta in rentas %}
+            <tr>
+                <td>{{ renta.bicicleta }}</td>
+                <td>{{ renta.fecha }}</td>
+                <td>{{ renta.tiempo }} horas</td>
+                <td>${{ renta.precio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
