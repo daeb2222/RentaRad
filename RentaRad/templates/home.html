@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renta de bicicletas</title>
+</head>
+<body>
+    <h1>Renta de bicicletas</h1>
+
+    <form action="/rentar" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        <label for="fecha">Fecha de renta:</label>
+        <input type="date" id="fecha" name="fecha"><br><br>
+        <label for="tiempo">Tiempo de renta (en horas):</label>
+        <input type="number" id="tiempo" name="tiempo" min="1" max="24"><br><br>
+        <input type="submit" value="Rentar">
+    </form>
+
+</body>
+<script>
+  function calcularPrecio() {
+      var tiempo = document.getElementById('tiempo').value;
+      var precio = tiempo * 10; // el precio es de $10 por hora
+      document.getElementById('precio').innerHTML = precio;
+  }
+</script>
+</html>
