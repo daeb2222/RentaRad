@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* Estilos para el menú */
+        nav {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 0.5rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+        main {
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Bienvenido, {{ nombre }}</h1>
+        <ul>
+            <li><a href="/perfil">Ver perfil</a></li>
+            <li><a href="/rentar">Rentar</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Home</h1>
+        <p>¡Bienvenido a RentaRad!</p>
+    </main>
+</body>
+</html>
