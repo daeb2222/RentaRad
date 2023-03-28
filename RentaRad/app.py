@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,session
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 import csv
 from funciones import funcionesmecas
@@ -35,9 +35,17 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        session['username'] = username
         return redirect(url_for('rent'))
     else:
         return render_template('rent.html')
+    
+@app.route('/home')
+def home():
+    nombre_usuario = session['username'] # nombre del usuario obtenido del servidor
+    return render_template('home.html', nombre=nombre_usuario)
 
 @app.route('/rentar', methods=['POST'])
 def rentar():
